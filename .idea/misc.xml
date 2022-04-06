@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/black/OneDrive/Uni/YR3 S1/Mobile Software Development COIT13234/assignment 1/PropertyList Assignment 1/app/src/main/res/layout/activity_main.xml" value="0.3484375" />
+        <entry key="..\:/Users/black/OneDrive/Uni/YR3 S1/Mobile Software Development COIT13234/assignment 1/PropertyList Assignment 1/app/src/main/res/layout/fragment_details.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/black/OneDrive/Uni/YR3 S1/Mobile Software Development COIT13234/assignment 1/PropertyList Assignment 1/app/src/main/res/layout/fragment_list.xml" value="0.3484375" />
+        <entry key="..\:/Users/black/OneDrive/Uni/YR3 S1/Mobile Software Development COIT13234/assignment 1/PropertyList Assignment 1/app/src/main/res/layout/list_item.xml" value="0.3484375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
