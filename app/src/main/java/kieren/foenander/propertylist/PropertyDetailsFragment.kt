@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 
@@ -26,11 +27,37 @@ class PropertyDetailsFragment: Fragment(){
 
         mProperty = mPropertyDetailsViewModel.selectedProperty.value!!
 
+
+        loadImage(mProperty.propertyImage, view.findViewById(R.id.property_image))
         val addressText = view?.findViewById<TextView>(R.id.address)
         addressText?.text = mProperty.address
+        val priceText = view?.findViewById<TextView>(R.id.price)
+        priceText?.text = "$" + mProperty.price.toString()
+        val agentText = view?.findViewById<TextView>(R.id.agent)
+        agentText?.text = mProperty.agent
 
+        val doneButton = view?.findViewById<Button>(R.id.done)
+        doneButton?.setOnClickListener{_->
+            mProperty.address = addressText?.text.toString()
+            //drop is used to take the "$" out to avoid number format exception
+            mProperty.price = priceText?.text.toString().drop(1).toInt()
+            mProperty.agent = agentText?.text.toString()
+
+            mPropertyDetailsViewModel.editedProperty.value = mProperty
+
+        }
 
         return view
+    }
+
+    //function sets the image name it is given to the current image view
+    fun loadImage(imageName: String, imageView: ImageView){
+
+        val resourceId = this.resources.getIdentifier(imageName, "drawable", activity?.packageName)
+
+        if (resourceId != 0){
+            imageView.setImageResource(resourceId)
+        }
     }
 
 }

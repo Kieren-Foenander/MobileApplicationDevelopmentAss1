@@ -55,8 +55,9 @@ class PropertyAdapter(var properties: List<Property>): RecyclerView.Adapter<Prop
                 this.property = property
 
                 val addressView: TextView = view.findViewById(R.id.address)
-
                 addressView.text = property.address
+                val priceView: TextView = view.findViewById(R.id.price)
+                priceView.text = "$" + property.price.toString()
 
             }
         }

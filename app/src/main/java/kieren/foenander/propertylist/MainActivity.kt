@@ -2,6 +2,7 @@ package kieren.foenander.propertylist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
@@ -16,15 +17,18 @@ class MainActivity : AppCompatActivity() {
         mPropertyDetailsViewModel = ViewModelProvider(this).get(PropertyDetailsViewModel::class.java)
 
         mPropertyDetailsViewModel.selectedProperty.observe(this){
-            supportFragmentManager.beginTransaction().replace(R.id.container, PropertyDetailsFragment.newInstance()).commit()
+            loadFragment(PropertyDetailsFragment.newInstance())
         }
-
+        mPropertyDetailsViewModel.editedProperty.observe(this){
+            loadFragment(PropertyListFragment.newInstance())
+        }
         if(savedInstanceState == null){
-            val fragment = PropertyListFragment.newInstance()
-
-            supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+            loadFragment(PropertyListFragment.newInstance())
         }
 
+    }
 
+    fun loadFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
 }

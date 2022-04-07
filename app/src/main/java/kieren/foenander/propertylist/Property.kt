@@ -10,4 +10,4 @@ the agent variable is for the agent that is managing the property
 
 */
 
-data class Property(var id:String, var address:String, var price:Int, var agent: String )
+data class Property(var id:String, var address:String, var price:Int, var agent: String, var propertyImage: String)
