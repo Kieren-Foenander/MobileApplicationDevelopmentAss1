@@ -51,7 +51,5 @@ class PropertyListFragment: Fragment() {
 
         recyclerView.adapter = PropertyAdapter(mPropertyArray)
         return recyclerView
-
     }
-
 }

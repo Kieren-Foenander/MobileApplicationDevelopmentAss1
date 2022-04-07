@@ -17,18 +17,28 @@ class MainActivity : AppCompatActivity() {
         mPropertyDetailsViewModel = ViewModelProvider(this).get(PropertyDetailsViewModel::class.java)
 
         mPropertyDetailsViewModel.selectedProperty.observe(this){
-            loadFragment(PropertyDetailsFragment.newInstance())
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, PropertyDetailsFragment.newInstance())
+                .addToBackStack("list_fragment")
+                .commit()
         }
         mPropertyDetailsViewModel.editedProperty.observe(this){
-            loadFragment(PropertyListFragment.newInstance())
+            supportFragmentManager.popBackStack()
         }
         if(savedInstanceState == null){
             loadFragment(PropertyListFragment.newInstance())
         }
-
     }
 
     fun loadFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+    }
+
+    override fun onBackPressed() {
+        val currentFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.container)
+
+        if (currentFragment != null && currentFragment.view?.id ==R.id.property_details_fragment)
+            loadFragment(PropertyListFragment.newInstance())
     }
 }
