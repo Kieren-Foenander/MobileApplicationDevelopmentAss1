@@ -38,6 +38,6 @@ class MainActivity : AppCompatActivity() {
         val currentFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.container)
 
         val frag = currentFragment as PropertyDetailsFragment
-        frag.checkDone()
+        frag.checkDone(true)
     }
 }
