@@ -40,14 +40,12 @@ class PropertyAdapter(var properties: List<Property>) :
 
         init {
             itemView.setOnClickListener(this)
-
         }
 
         override fun onClick(v: View) {
             Log.d("PropertyAdapter", property.address + "selected")
 
             mPropertyDetailsModel.selectedProperty.value = property
-
         }
 
         fun bind(property: Property) {
@@ -57,7 +55,6 @@ class PropertyAdapter(var properties: List<Property>) :
             addressView.text = property.address
             val priceView: TextView = view.findViewById(R.id.price)
             priceView.text = "$" + property.price.toString()
-
         }
     }
 }

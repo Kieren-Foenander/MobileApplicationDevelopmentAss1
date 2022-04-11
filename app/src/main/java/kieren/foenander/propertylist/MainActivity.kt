@@ -41,9 +41,5 @@ class MainActivity : AppCompatActivity() {
 
         val frag = currentFragment as PropertyDetailsFragment
         frag.checkDone()
-
-
-//        if (currentFragment != null && currentFragment.view?.id ==R.id.property_details_fragment)
-//            loadFragment(PropertyListFragment.newInstance())
     }
 }

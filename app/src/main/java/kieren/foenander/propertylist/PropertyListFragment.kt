@@ -15,8 +15,8 @@ class PropertyListFragment: Fragment() {
 
     companion object{
         fun newInstance() = PropertyListFragment()
-
     }
+
     private val mPropertyArray: ArrayList<Property> = ArrayList()
     private lateinit var mPropertyDetailsViewModel: PropertyDetailsViewModel
 
