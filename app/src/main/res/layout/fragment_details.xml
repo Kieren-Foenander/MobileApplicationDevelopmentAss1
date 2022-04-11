@@ -29,6 +29,7 @@
     <EditText
         android:id="@+id/address"
         android:layout_marginTop="5dp"
+        android:minEms="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"/>
@@ -44,6 +45,7 @@
     <EditText
         android:id="@+id/price"
         android:layout_marginTop="5dp"
+        android:minEms="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"/>
@@ -59,6 +61,7 @@
     <EditText
         android:id="@+id/agent"
         android:layout_marginTop="5dp"
+        android:minEms="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"/>
