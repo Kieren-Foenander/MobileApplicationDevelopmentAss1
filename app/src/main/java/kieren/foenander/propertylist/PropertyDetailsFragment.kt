@@ -37,22 +37,9 @@ class PropertyDetailsFragment: Fragment(){
         agentText?.text = mProperty.agent
 
         val doneButton = view?.findViewById<Button>(R.id.done)
-        doneButton?.setOnClickListener{_->
 
-            //validates all fields before applying any changes
-            if (validateFields(addressText?.text.toString(), priceText?.text.toString(), agentText?.text.toString())){
-                //checks if property changed and if not sets edited property to null which defaults back to list view
-                if (propertyChanged(mProperty, addressText?.text.toString(), priceText?.text.toString().drop(1).toInt(), agentText?.text.toString())){
-                    mProperty.address = addressText?.text.toString()
-                    //drop is used to take the "$" out to avoid number format exception
-                    mProperty.price = priceText?.text.toString().drop(1).toInt()
-                    mProperty.agent = agentText?.text.toString()
-                    mPropertyDetailsViewModel.editedProperty.value = mProperty
-                }
-                else{
-                    mPropertyDetailsViewModel.editedProperty.value = null
-                }
-            }
+        doneButton?.setOnClickListener{_->
+            checkDone(false)
         }
         return view
     }
@@ -67,6 +54,54 @@ class PropertyDetailsFragment: Fragment(){
         }
     }
 
+    //compares the original property with the new property value to determine if it has changed
+    fun propertyChanged(originalProperty: Property, newAddress: String, newPrice: Int, newAgent: String): Boolean{
+        return !(originalProperty.address == newAddress && originalProperty.price == newPrice && originalProperty.agent == newAgent)
+    }
+
+    //completes all validation checks whether list needs to update or confirm changes
+    fun checkDone(backButtonPressed: Boolean){
+        val addressText = view?.findViewById<TextView>(R.id.address)
+        val priceText = view?.findViewById<TextView>(R.id.price)
+        val agentText = view?.findViewById<TextView>(R.id.agent)
+
+        if (!backButtonPressed){
+            //validates all fields before applying any changes
+            if (validateFields(addressText?.text.toString(), priceText?.text.toString(), agentText?.text.toString())){
+                //checks if property changed and if not sets edited property to null which defaults back to list view
+                if (propertyChanged(mProperty, addressText?.text.toString(), priceText?.text.toString().drop(1).toInt(), agentText?.text.toString())){
+                    mProperty.address = addressText?.text.toString()
+                    //drop is used to take the "$" out to avoid number format exception
+                    mProperty.price = priceText?.text.toString().drop(1).toInt()
+                    mProperty.agent = agentText?.text.toString()
+                    mPropertyDetailsViewModel.editedProperty.value = mProperty
+                }
+                else{
+                    mPropertyDetailsViewModel.editedProperty.value = null
+                }
+            }
+        } else{
+            if (propertyChanged(mProperty, addressText?.text.toString(), priceText?.text.toString().drop(1).toInt(), agentText?.text.toString())) {
+                val dialogBuilder =
+                    AlertDialog.Builder(requireActivity())
+                        .setMessage("Do you wish to Discard changes")
+                        .setPositiveButton("YES") { _, _ ->
+                            mPropertyDetailsViewModel.editedProperty.value = null
+                        }
+                        .setNegativeButton("Cancel", null)
+
+                val alert = dialogBuilder.create()
+                alert.setTitle("Warning")
+                alert.show()
+
+            }
+            else{
+                mPropertyDetailsViewModel.editedProperty.value = null
+            }
+        }
+    }
+
+    //validation checks on data
     fun validateFields(address: String, price: String, agent: String): Boolean{
         return if (address == "" || price == "" || agent == ""){
 
@@ -100,34 +135,6 @@ class PropertyDetailsFragment: Fragment(){
         }
         else{
             true
-        }
-    }
-
-    fun propertyChanged(originalProperty: Property, newAddress: String, newPrice: Int, newAgent: String): Boolean{
-        return !(originalProperty.address == newAddress && originalProperty.price == newPrice && originalProperty.agent == newAgent)
-    }
-
-    fun checkDone(){
-        val addressText = view?.findViewById<TextView>(R.id.address)
-        val priceText = view?.findViewById<TextView>(R.id.price)
-        val agentText = view?.findViewById<TextView>(R.id.agent)
-
-        if (propertyChanged(mProperty, addressText?.text.toString(), priceText?.text.toString().drop(1).toInt(), agentText?.text.toString())) {
-            val dialogBuilder =
-                AlertDialog.Builder(requireActivity())
-                    .setMessage("Do you wish to Discard changes")
-                    .setPositiveButton("YES") { _, _ ->
-                        mPropertyDetailsViewModel.editedProperty.value = null
-                    }
-                    .setNegativeButton("Cancel", null)
-
-            val alert = dialogBuilder.create()
-            alert.setTitle("Warning")
-            alert.show()
-
-        }
-        else{
-            mPropertyDetailsViewModel.editedProperty.value = null
         }
     }
 }
