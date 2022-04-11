@@ -2,9 +2,7 @@ package kieren.foenander.propertylist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun loadFragment(fragment: Fragment){
+    private fun loadFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
 

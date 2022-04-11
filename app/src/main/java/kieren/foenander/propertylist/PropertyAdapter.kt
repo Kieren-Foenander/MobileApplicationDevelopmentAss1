@@ -1,6 +1,5 @@
 package kieren.foenander.propertylist
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,8 +42,6 @@ class PropertyAdapter(var properties: List<Property>) :
         }
 
         override fun onClick(v: View) {
-            Log.d("PropertyAdapter", property.address + "selected")
-
             mPropertyDetailsModel.selectedProperty.value = property
         }
 

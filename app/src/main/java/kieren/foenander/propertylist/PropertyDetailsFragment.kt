@@ -1,8 +1,6 @@
 package kieren.foenander.propertylist
 
-import android.app.backup.BackupAgent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +21,7 @@ class PropertyDetailsFragment: Fragment(){
     private lateinit var mProperty: Property
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View{
-        var view = inflater.inflate(R.layout.fragment_details, container, false)
+        val view = inflater.inflate(R.layout.fragment_details, container, false)
 
         val context = activity as ViewModelStoreOwner
         mPropertyDetailsViewModel = ViewModelProvider(context).get(PropertyDetailsViewModel::class.java)

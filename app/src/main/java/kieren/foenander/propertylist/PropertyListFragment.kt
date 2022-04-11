@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,7 +37,7 @@ class PropertyListFragment: Fragment() {
         val recyclerView = inflater.inflate(R.layout.fragment_list, container, false) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        var editedProperty = mPropertyDetailsViewModel.editedProperty.value
+        val editedProperty = mPropertyDetailsViewModel.editedProperty.value
 
         if (editedProperty != null){
             for (i in 0 until (mPropertyArray.size -1)){
