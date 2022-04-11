@@ -2,6 +2,7 @@ package kieren.foenander.propertylist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -38,7 +39,11 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val currentFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.container)
 
-        if (currentFragment != null && currentFragment.view?.id ==R.id.property_details_fragment)
-            loadFragment(PropertyListFragment.newInstance())
+        val frag = currentFragment as PropertyDetailsFragment
+        frag.checkDone()
+
+
+//        if (currentFragment != null && currentFragment.view?.id ==R.id.property_details_fragment)
+//            loadFragment(PropertyListFragment.newInstance())
     }
 }
