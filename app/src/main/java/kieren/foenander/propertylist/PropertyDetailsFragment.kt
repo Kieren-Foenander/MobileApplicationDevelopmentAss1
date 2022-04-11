@@ -2,6 +2,7 @@ package kieren.foenander.propertylist
 
 import android.app.backup.BackupAgent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,9 +46,14 @@ class PropertyDetailsFragment: Fragment(){
                 //drop is used to take the "$" out to avoid number format exception
                 mProperty.price = priceText?.text.toString().drop(1).toInt()
                 mProperty.agent = agentText?.text.toString()
+
+                //insert validation
+
                 mPropertyDetailsViewModel.editedProperty.value = mProperty
             }
-
+            else{
+                mPropertyDetailsViewModel.editedProperty.value = null
+            }
         }
         return view
     }
